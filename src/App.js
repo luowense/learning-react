@@ -50,11 +50,18 @@ class App extends Component {
     this.setState({ famille })
   }
 
-  handleChange = (event) => {
+  handleNameChange = (event) => {
     const famille = { ...this.state.famille }
     const name = event.target.value
     console.log(name)
     famille.membre1.name = name
+    this.setState({famille})
+  }
+
+  handleAgeChange = (e) => {
+    const famille = {...this.state.famille}
+    const age = e.target.value
+    famille.membre1.age = age
     this.setState({famille})
   }
 
@@ -66,7 +73,8 @@ class App extends Component {
     <Fragment>
       <div className="App">
         <h1>{titre}</h1>
-        <input value={ famille.membre1.name } onChange={ this.handleChange } type='text'/>
+        <input value={ famille.membre1.name } onChange={ this.handleNameChange } type='text'/>
+        <input value={ famille.membre1.age } onChange={this.handleAgeChange} type='text'/>
         <Membre 
           name={famille.membre1.name}
           age={famille.membre1.age}
