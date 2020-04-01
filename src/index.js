@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App titre='ma superbe app react'/>
   </React.StrictMode>,
   document.getElementById('root')
 );
