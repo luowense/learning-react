@@ -25,15 +25,15 @@ import Button from './components/Button';
 const famille = {
   membre1: {
     name: 'Titi',
-    age: '38'
+    age: 38
   },
   membre2: {
     name: 'Laurent', 
-    age: '31'
+    age: 31
   },
   membre3: {
     name: 'Ines', 
-    age: '8'
+    age: 8
   }
 }
 
@@ -41,7 +41,8 @@ const famille = {
 //A propos du State 
 class App extends Component {
   state = {
-    famille
+    famille,
+    isShow: false
   }
 
   handleClick = (num) => {
@@ -65,9 +66,14 @@ class App extends Component {
     this.setState({famille})
   }
 
+  handleShowDescription = () => {
+    const isShow = !this.state.isShow
+    this.setState({ isShow })
+  }
+
   render () {
     const {titre} = this.props;
-    const { famille } = this.state;
+    const { famille, isShow } = this.state;
 
     return (
     <Fragment>
@@ -87,9 +93,17 @@ class App extends Component {
           name={famille.membre3.name}
           age={famille.membre3.age}
           />
-          <p>Je suis un chien</p>
+          {
+            this.state.isShow ? 
+            <p>Je suis un chien</p>
+            :
+            null
+          }
+          <button onClick={this.handleShowDescription}>
+            { isShow ? 'Cacher' : 'Montrer'}
+          </button>
+          <Button vieillir={() => this.handleClick(8)}/>
       </div>
-      <Button vieillir={() => this.handleClick(8)}/>
     </Fragment> 
     )
   }
