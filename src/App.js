@@ -51,24 +51,17 @@ class App extends Component {
     this.setState({ famille })
   }
 
-  handleNameChange = (event) => {
+  handleChange = (event, id) => {
     const famille = { ...this.state.famille }
     const name = event.target.value
-    console.log(name)
-    famille.membre1.name = name
+    famille[id].name = name
+    famille[id].age = age
     this.setState({famille})
   }
 
   hideName = (id) => {
     const famille = { ...this.state.famille }
     famille[id].name = 'X'
-    this.setState({famille})
-  }
-
-  handleAgeChange = (e) => {
-    const famille = {...this.state.famille}
-    const age = e.target.value
-    famille.membre1.age = age
     this.setState({famille})
   }
 
@@ -94,8 +87,8 @@ class App extends Component {
       .map(membre => (
         <Membre 
           key={membre}
-          handleNameChange = {this.handleNameChange}
-          handleAgeChange = { this.handleAgeChange }
+          handleNameChange = { event => this.handleChange(event, membre) }
+          handleAgeChange = { event => this.handleChange(event, membre) }
           hideName={() => this.hideName(membre)}
           age={ famille[membre].age }
           name={ famille[membre].name }
